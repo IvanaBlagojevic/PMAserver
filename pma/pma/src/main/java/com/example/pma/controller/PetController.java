@@ -73,6 +73,7 @@ public class PetController {
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> getAll(){
 		
+		//nepronadjene i neobrisane
 		List<Pet> pets = petService.findAll();
 		
 		List<PetDTO> petsDTO = converter.convertToPetDTO(pets);
@@ -82,7 +83,7 @@ public class PetController {
 
 	@RequestMapping(value = "/getMissing", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> getMissing(){
-		List<Pet> pets = petService.findAllByIsFound(false);
+		List<Pet> pets = petService.findAll();
 		List<PetDTO> petsDTO = converter.convertToPetDTO(pets);
 		
 		return new ResponseEntity<>(petsDTO,HttpStatus.OK);
@@ -153,27 +154,6 @@ public class PetController {
 		return new ResponseEntity<>(p,HttpStatus.OK);
 	}
 	
-
-	@PostMapping(value = "/uploadPhoto")
-	public ResponseEntity<?> postMissing(@RequestPart("newImage") MultipartFile file){
-	
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		System.out.println("IMESLIKE: " + fileName);
-		try {
-            
-        	Path targetLocation = this.fileLocation.resolve(fileName);
-            
-            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-
-            return new ResponseEntity<>(targetLocation.toString(), HttpStatus.OK);
-            
-        } catch (IOException ex) {
-            System.out.println("Could not store file " + fileName + ". Please try again!");
-            
-        }
-		return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-	}
-	
 	@RequestMapping(value="/petFound/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<?> petFound(@PathVariable Long id){
 		
@@ -200,40 +180,16 @@ public class PetController {
 			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 		}
 		
-		if(!deleteFile(pet))
-		{
-			return new ResponseEntity(HttpStatus.BAD_REQUEST);
-		}
+		petService.deletePet(pet);
+		//petService.deleteItem(pet);
+
 		
-		petService.deleteItem(pet);
-		
-		List<Pet> petsAfterDelete = petService.findAllByOwnerId(user.getId());
+		List<Pet> petsAfterDelete = petService.findAllByOwnerIdAndIsDeleted(user.getId(), false);
 		List<PetDTO> petsDTO = converter.convertToPetDTO(petsAfterDelete);
 		
 		return new ResponseEntity<>(petsDTO, HttpStatus.OK);
 	}
-	
-	public boolean deleteFile(Pet pet) {
-		
-	
-		try {
-			
-			File file = new File(this.fileLocation + "\\" + pet.getImage());
-			if(file.delete())
-			{
-				System.out.println("Image deleted!");
-				return true;
-			}else
-			{
-				System.out.println("Failed");
-			}
-		}catch(Exception e)
-        {
-            System.out.println("Failed to Delete image !!");
-        }
-		
-	    return false;
-	}
+
 }
 
 	

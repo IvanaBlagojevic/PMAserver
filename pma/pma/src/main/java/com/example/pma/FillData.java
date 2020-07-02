@@ -45,22 +45,22 @@ public class FillData {
     public void init() throws URISyntaxException, IOException, ParseException {
 		
 		//USERS
-		User user = new User("jova@gmail.com", "123");
+		User user = new User("jova@gmail.com", "123", false);
 		userService.saveUser(user);
 		
-		User user1 = new User("pera@gmail.com", "123");
+		User user1 = new User("pera@gmail.com", "123", false);
 		userService.saveUser(user1);
 		
-		User user2 = new User("marko@gmail.com", "123");
+		User user2 = new User("marko@gmail.com", "123", false);
 		userService.saveUser(user2);
 		
-		User user3 = new User("milica@gmail.com", "123");
+		User user3 = new User("milica@gmail.com", "123", false);
 		userService.saveUser(user3);
 		
-		User user4 = new User("jelena@gmail.com", "123");
+		User user4 = new User("jelena@gmail.com", "123", false);
 		userService.saveUser(user4);
 		
-		User user5 = new User("dragana@gmail.com", "123");
+		User user5 = new User("dragana@gmail.com", "123", false);
 		userService.saveUser(user5);
 		
 		//ADDRESS
@@ -83,47 +83,39 @@ public class FillData {
 		
 		
 		//PETS
-		Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2020-06-10");
-		Pet pet = new Pet(PetType.DOG,"Dzeki",PetGender.MALE, "Pas ima zelenu ogrlicu", "puppydog.jpg", date, "123-456", false, user, a1);
-		petService.addNewPet(pet);
-		
 		Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-06-01");
-		Pet pet1 = new Pet(PetType.DOG,"Aleks",PetGender.MALE, "Opis neki", "labrador.jpg", date1, "123-456", false, user1, a2);
+		Pet pet1 = new Pet(PetType.DOG,"Aleks",PetGender.MALE, "Opis neki", "https://firebasestorage.googleapis.com/v0/b/pawfinder-ddd68.appspot.com/o/images%2Fbeagle2.jpg?alt=media&token=d4ef3173-dc2e-4207-b3ad-269378464852", date1, "123-456", false, user1, a2);
 		petService.addNewPet(pet1);
 		
 		Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-06-12");
-		Pet pet2 = new Pet(PetType.CAT,"Djura",PetGender.MALE, "Ne prilazi nepoznatima", "cat.jpg", date2, "123-456", false, user2, a3);
+		Pet pet2 = new Pet(PetType.CAT,"Djura",PetGender.MALE, "Ne prilazi nepoznatima", "https://firebasestorage.googleapis.com/v0/b/pawfinder-ddd68.appspot.com/o/images%2Fcat333.jpg?alt=media&token=ca5714c2-915b-45d2-acad-efb2e7f67a69", date2, "123-456", false, user2, a3);
 		petService.addNewPet(pet2);
 		
 		Date date3 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-05-29");
-		Pet pet3 = new Pet(PetType.CAT,"Kiki",PetGender.FEMALE, "Ruska plava macka", "russiancat.jpg", date3, "021/444-444", false, user, a4);
+		Pet pet3 = new Pet(PetType.CAT,"Kiki",PetGender.FEMALE, "Ruska plava macka", "https://firebasestorage.googleapis.com/v0/b/pawfinder-ddd68.appspot.com/o/images%2Frussiancat.jpg?alt=media&token=7a9b950f-1dac-4e80-9af3-df6e9ec62135", date3, "021/444-444", false, user, a4);
 		petService.addNewPet(pet3);
 		
 		Date date4 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-06-10");
-		Pet pet4 = new Pet(PetType.DOG,"Bobi",PetGender.MALE, "Drustven, prilazi deci", "samojedjpg.jpg", date4, "021/123-456", false, user3, a5);
+		Pet pet4 = new Pet(PetType.DOG,"Bobi",PetGender.MALE, "Drustven, prilazi deci", "https://firebasestorage.googleapis.com/v0/b/pawfinder-ddd68.appspot.com/o/images%2Fsamojedjpg.jpg?alt=media&token=bcbe6bbf-f18c-428b-854f-1569cecf05f8", date4, "021/123-456", false, user3, a5);
 		petService.addNewPet(pet4);
 		
-		Date date5 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-05-29");
-		Pet pet5 = new Pet(PetType.DOG,"Moksi",PetGender.FEMALE, "Laje ali ne ujeda", "pup.jpg", date5, "123-456", false, user4,a6);
-		petService.addNewPet(pet5);
-		
 		Date date6 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-06-14");
-		Pet pet6 = new Pet(PetType.DOG,"Reks",PetGender.MALE, "Vucjak, star godinu dana, pobegao u blizini marketa", "download.jpg", date6, "123456789", false, user5, a7);
+		Pet pet6 = new Pet(PetType.DOG,"Reks",PetGender.MALE, "Vucjak, star godinu dana, pobegao u blizini marketa", "https://firebasestorage.googleapis.com/v0/b/pawfinder-ddd68.appspot.com/o/images%2Fdownload.jpg?alt=media&token=9bb5dcac-cf8d-4350-89a3-e628a8050dab", date6, "123456789", false, user5, a7);
 		petService.addNewPet(pet6);
 		
 		Date date7 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-06-15");
-		Pet pet7 = new Pet(PetType.DOG,"Mona",PetGender.FEMALE, "Pas ima crvenu ogrlicu sa kodom", "dalmatian.jpg", date7, "123456789", false, user2, a8);
+		Pet pet7 = new Pet(PetType.DOG,"Mona",PetGender.FEMALE, "Pas ima crvenu ogrlicu sa kodom", "https://firebasestorage.googleapis.com/v0/b/pawfinder-ddd68.appspot.com/o/images%2FPomeranian.jpg?alt=media&token=9af25af6-5915-410d-b6c7-e37f87f5c723", date7, "123456789", false, user2, a8);
 		petService.addNewPet(pet7);
 		
 		
 		//COMMENTS
-		Comment com1 = new Comment("Video sam ga na uglu bulevara Lazara", new Date(), user, pet);
+		Comment com1 = new Comment("Video sam ga na uglu bulevara Lazara", new Date(), user, pet2);
 		commentService.save(com1);
 		
-        Comment com2 = new Comment("Bas je lep!", new Date(), user1 ,pet);
+        Comment com2 = new Comment("Bas je lep!", new Date(), user1 ,pet2);
         commentService.save(com2);
         
-        Comment com3 = new Comment("Nisam ga video. Primetio sam da ima mnogo lutalica u Novom Sadu.", new Date(), user2, pet);
+        Comment com3 = new Comment("Nisam ga video. Primetio sam da ima mnogo lutalica u Novom Sadu.", new Date(), user2, pet2);
         commentService.save(com3);
         
         Comment com4 = new Comment("Lep je", new Date(),user3 ,pet1);

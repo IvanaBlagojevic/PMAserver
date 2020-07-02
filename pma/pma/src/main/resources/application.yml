@@ -2,15 +2,19 @@ spring:
   application:
     name: pma
   datasource:
-    url: jdbc:mysql://localhost:3306/pma?useSSL=false&createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
-    username: root
+    hikari:
+       connectionTimeout: 2000
+       maximumPoolSize: 5
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
     password: sifra
-    driverClassName : com.mysql.jdbc.Driver
-    initialization-mode: always
+    driver-class-name: org.postgresql.Driver
+  
   jpa:
     hibernate:
-        ddl-auto: create-drop
-    database-platform : org.hibernate.dialect.MySQL5Dialect
+        ddl-auto: create
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   servlet:
     multipart:
         max-file-size: 10MB
@@ -19,6 +23,7 @@ spring:
 
 server:
   port: 8080
+  
   
 
   
